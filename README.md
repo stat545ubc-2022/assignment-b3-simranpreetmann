@@ -1,8 +1,8 @@
 # Brief Discription 
 ### What is this repository?
-This is the repository for Assignment B3 for STAT 545B. This assignment focuses on the creation of a Shiny app.
+This is the repository for Assignment B3 for STAT 545B. This assignment focuses on the creation of a Shiny app. The app created here can be used to input your preferences and determine which Starbucks drink choices are available to you according to those preferences!
   - [Assignment B3](https://stat545.stat.ubc.ca/assignments/assignment-b3/)
-  
+
 ### What files are in this repository?
 This folder contains the following files:
 - [README.md](https://github.com/stat545ubc-2022/assignment-b3-simranpreetmann/blob/main/README.md) - Brief description of this folder
