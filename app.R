@@ -7,6 +7,13 @@ library(fontawesome)
 
 starbucks <- read.csv("starbucks_data.csv", stringsAsFactors = FALSE)
 
+# Features of This Shiny App:
+## Feature # 1 (Lines 35-54 & Lines 98-125): The first feature included in this app is the ability to sort the table containing data on Starbucks drinks according to the individual's preferences (i.e., size, temperature, type of milk, whipped cream or no whipped cream). This feature is important for this app because it returns a shortened list of drinks that match the individual's preferences, thus, making the task of choosing a drink much less daunting!
+## Feature # 2 (Lines 62 & 99): This feature relies on the DT package to turn the static table into an interactive one. This is useful for this app because it allows the user to further sort the drinks according to nutritional information (i.e., saturated fat). Although this could've been done by including more widgets in the sidebar, doing so would've required the user to decide on a large set of parameters which can be quite daunting. Additionally, the user wouldn't have been able to see a neat, organized table with the drinks that have the lowest amount of saturated fat, for example, at the top!
+## Feature # 3 (Lines 64 & Line 159-191): This feature allows the user to download the table as a csv file. This feature is particularly useful because it allows the user to save their drink options to refer to when ordering Starbucks the next time! I, for example, always get a hot, grande drink with whole milk and whip, and, so, having the option to save the table which contains the drink options available to me according to these preferences would be really useful!
+## Feature # 4 (Line 39): This feature adds an image of the Starbucks logo to the app. This is useful because it makes the app more aesthetically-pleasing and, thus, improves the overall user experience!
+## Feature # 5 (line 60 & Lines 131-160): This feature returns a line of text which tells the user how many drink options they have according to the inputted preferences. This feature is useful because if the user sees that the number of drink options matching their criteria is too great, they may consider altering the preferences to, for example, only include one kind of milk. Overall, this feature provides a nice foreshadowing for what the user can expect in the table!
+
 ui <- fluidPage(
   tags$style(
     ".note {color: #d62b1f;} #element {color: #d62b1f;}",
