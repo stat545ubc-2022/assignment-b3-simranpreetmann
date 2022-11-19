@@ -8,7 +8,22 @@ library(fontawesome)
 starbucks <- read.csv("starbucks_data.csv", stringsAsFactors = FALSE)
 
 ui <- fluidPage(
-  titlePanel("How do you like your coffee?", windowTitle = "Starbucks Drink Options"),
+  tags$style(".note {color: #d62b1f;} #element {color: #d62b1f;}",
+             ".title {color: #00704A;} #element {color: #00704A;}"),
+  tags$style(HTML("
+                  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+                  .title {
+                    font-family: 'Open Sans', sans-serif;
+                  }")),
+  tags$style(HTML("
+                  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
+                  p {
+                   font-family: 'Open Sans', sans-serif;
+                  }")),
+  titlePanel(tags$b(class = "title", "How do you like your coffee?", style = "font-size:40px;"), windowTitle = "Starbucks Drink Options"),
+  br(),
+  p(class = "description", "Do you often find yourself in the Starbucks line overwhelmed by the number of drink options? Do you stumble up to the barista with no idea of what to order? Well, fear no more! This app was created to help you decide what to order at Starbucks without breaking a sweat! Simply, enter your preferences below and choose from the list of suggestions!"),
+  p(class = "note", "NOTE: Information regarding the sugar and caffeine content of the drink options is also visualized for the health-conscious coffee-lover!"),
   sidebarLayout(
     sidebarPanel(
       img(src = "starbucks_logo.png"),
@@ -32,7 +47,8 @@ ui <- fluidPage(
       plotOutput("caffeineplot"),
       br(),
       br(),
-      DT::dataTableOutput("results")
+      DT::dataTableOutput("results"),
+      downloadButton("download_data", label = "Download Table")
     )
   )
 )
@@ -117,5 +133,35 @@ server <- function(input, output) {
     number_rows <- nrow(filtered_table)
     paste("You can choose from", print(number_rows), "drink options!")
   })
+  output$download_data <- downloadHandler(
+    filename = function() {
+      paste("Starbucks Drink Options-", Sys.Date(), ".csv", sep="")
+    },
+    content = function(file) {
+      filtered_table <-
+        starbucks %>%
+        filter(size == input$sizeInput,
+               temp == input$tempInput,
+               whip == input$whipInput) %>%
+        filter(milk %in% input$milkInput) %>%
+        rename("Name of Drink" = product_name,
+               "Size of Drink" = size,
+               "Type of Milk" = milk,
+               "Temperature" = temp,
+               "Whipped Cream?" = whip,
+               "Serving Size (mL)" = serv_size_m_l,
+               "Calories" = calories,
+               "Total Fat (g)" = total_fat_g,
+               "Saturated Fat (g)" = saturated_fat_g,
+               "Trans Fat (g)" = trans_fat_g,
+               "Cholesterol (mg)" = cholesterol_mg,
+               "Sodium (mg)" = sodium_mg,
+               "Total Carbohydrates (g)" = total_carbs_g,
+               "Fiber (g)" = fiber_g,
+               "Sugar (g)" = sugar_g,
+               "Caffeine (mg)" = caffeine_mg)
+      write.csv(filtered_table, file)
+    }
+  )
 }
 shinyApp(ui = ui, server = server)
