@@ -5,9 +5,9 @@ account: simranpreetmann
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7677028
-bundleId: 6531498
+bundleId: 6531549
 url: https://simranpreetmann.shinyapps.io/assignment-b3-simranpreetmann/
-when: 1668827342.70476
-lastSyncTime: 1668827342.70477
+when: 1668829450.53103
+lastSyncTime: 1668829450.53104
 asMultiple: FALSE
 asStatic: FALSE
