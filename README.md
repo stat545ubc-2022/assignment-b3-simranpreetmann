@@ -1,6 +1,6 @@
 # Brief Discription 
 ### What is this repository?
-This is the repository for Assignment B3 for STAT 545B. This assignment focuses on the creation of a Shiny app. The app created here can be used to input your preferences and determine which Starbucks drink choices are available to you according to those preferences!
+This is the repository for Assignment B3 for STAT 545B. As part of this assignment, I chose to create a Shiny app (Option B). The app created can be used to input your preferences and determine which Starbucks drink choices are available to you according to those preferences!
   - [Assignment B3](https://stat545.stat.ubc.ca/assignments/assignment-b3/)
 
 ### What files are in this repository?
