@@ -19,14 +19,17 @@ ui <- fluidPage(
                   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
                   p {
                    font-family: 'Open Sans', sans-serif;
+                  }
+                  h2 {
+                   font-family: 'Open Sans', sans-serif;
                   }")),
   titlePanel(tags$b(class = "title", "How do you like your coffee?", style = "font-size:40px;"), windowTitle = "Starbucks Drink Options"),
   br(),
   p(class = "description", "Do you often find yourself in the Starbucks line overwhelmed by the number of drink options? Do you stumble up to the barista with no idea of what to order? Well, fear no more! This app was created to help you decide what to order at Starbucks without breaking a sweat! Simply, enter your preferences below and choose from the list of suggestions!"),
-  p(class = "note", "NOTE: Information regarding the sugar and caffeine content of the drink options is also visualized for the health-conscious coffee-lover!"),
+  p(class = "note", tags$em("NOTE: Information regarding the sugar and caffeine content of the drink options is also visualized for the health-conscious coffee-lover!")),
   sidebarLayout(
     sidebarPanel(
-      img(src = "starbucks_logo.png"),
+      img(src = "starbucks_logo.png", align = "center"),
       selectInput("sizeInput", "What size drink would you like?",
                   choices = c("Short", "Tall", "Grande", "Venti", "Trenta", "Solo", "Doppio", "Triple", "Quad", "1 Scoop", "1 Shot")),
       radioButtons("tempInput", "Would you like a hot or a cold drink?",
@@ -62,7 +65,7 @@ server <- function(input, output) {
              whip == input$whipInput) %>%
       filter(milk %in% input$milkInput)
     ggplot(sugar_filtered, aes(x = product_name)) +
-      geom_col(aes(y = sugar_g), color = "forestgreen", fill = "forestgreen") +
+      geom_col(aes(y = sugar_g), color = "#006241", fill = "#006241") +
       labs(x = "Name of Drink", y = "Sugar Content (g)") +
       scale_x_discrete(guide = guide_axis(angle = 90)) +
       theme(axis.text.x = element_text(size = 9), axis.title = element_text(face="bold"))
@@ -75,7 +78,7 @@ server <- function(input, output) {
              whip == input$whipInput) %>%
       filter(milk %in% input$milkInput)
     ggplot(caffeine_filtered, aes(x = product_name)) +
-      geom_col(aes(y = caffeine_mg), color = "wheat3", fill = "wheat3") +
+      geom_col(aes(y = caffeine_mg), color = "#fbbc05", fill = "#fbbc05") +
       labs(x = "Name of Drink", y = "Caffeine Content (mg)") +
       scale_x_discrete(guide = guide_axis(angle = 90)) +
       theme(axis.text.x = element_text(size = 9), axis.title = element_text(face="bold"))
